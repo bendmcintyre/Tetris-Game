@@ -1,4 +1,4 @@
-//Declaring necessary variable to make the game run
+//Declaring necessary variable to make the game run.
 const playerX = "x";
 const playerO = "o";
 const winningPatterns = [
@@ -22,7 +22,7 @@ startGame();
 
 restartButton.addEventListener("click", startGame);
 
-//This function below starts a new game
+//This function below starts a new game.
 function startGame() {
   playerOTurn = false;
   dataCell.forEach((cell) => {
@@ -35,7 +35,7 @@ function startGame() {
   winningMessage.classList.remove("show");
 }
 
-//This function below allows users to click spots on the grid
+//This function below allows users to click spots on the grid.
 function cellClick(e) {
   const cell = e.target;
   const currentClass = playerOTurn ? playerO : playerX;
@@ -50,7 +50,7 @@ function cellClick(e) {
   }
 }
 
-//This funciton ends the game and determines a winner
+//This funciton below ends the game and determines a winner by relaying a message to the user.
 function endGame(draw) {
   if (draw) {
     winningMessageText.innerText = "Draw!";
@@ -58,4 +58,41 @@ function endGame(draw) {
     winningMessageText.innerText = `${playerOTurn ? "O's" : "X's"} wins!`;
   }
   winningMessageText.classList.add("show");
+}
+
+//This function below is used if the game ends in a tie between the players.
+function isDraw() {
+  return [...dataCell].every((cell) => {
+    return cell.classList.contains(playerX) || cell.classList.contains(playerO);
+  });
+}
+
+//This function below is used to place the correct X or O in a cell.
+function placeMark(cell, currentClass) {
+  cell.classList.add(currentClass);
+}
+
+//This function below is used to swap turns between players.
+function swapTurns() {
+  playerOTurn = !playerOTurn;
+}
+
+//This function below allows the user to see thier X or O hover in the cells.
+function setBoard() {
+  board.classList.remove(playerX);
+  board.classList.remove(playerO);
+  if (playerOTurn) {
+    board.classList.add(playerO);
+  } else {
+    board.classList.add(playerX);
+  }
+}
+
+//This function below checks if the board matches the winning combinations declared above.
+function checkWin(currentClass) {
+  return winningPatterns.some((combination) => {
+    return combination.every((index) => {
+      return dataCell[index].classList.contains(currentClass);
+    });
+  });
 }
