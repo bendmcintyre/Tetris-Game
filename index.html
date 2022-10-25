@@ -6,17 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Tic-Tac-Toe">
     <meta name="author" content="Ben McIntyre">
-    <meta name="keywords"
-        content="HTML, CSS, JavaScript, Software, Development, Project, Ben, McIntyre, CSULB, Tic-Tac-Toe">
-    <title>Tic-Tac-Toe</title>
+    <meta name="keywords" content="HTML, CSS, JavaScript, Software, Development, Project, Ben, McIntyre, CSULB, Tic-Tac-Toe">
     <link rel="stylesheet" href="styles.css">
-    <script src="index.js"></script>
-    <script src="game.js"></script>
+    <script src="script.js" defer></script>
+    <title>Tic-Tac-Toe</title>
 </head>
 <body>
-    <div id="home-page">
-        <h1 id="tic-tac-toe-header">Tic-Tac-Toe</h1>
-        <a href="./game.html"><button id="play-game-button">Play</button></a>
+    <div class="board" id="board">
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+    </div>
+    <div class="winning-message" id="winning-message-id">
+        <div data-winning-message-text></div>
+        <button id="restart-button">Restart</button>
     </div>
 </body>
 </html>
