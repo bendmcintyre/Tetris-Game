@@ -33,7 +33,7 @@ function startGame() {
     cell.classList.remove(xSymbol);
     cell.classList.remove(oSymbol);
     cell.removeEventListener("click", handleClick);
-    cell.addEventListener("click", handleClick, { once: true });
+    cell.addEventListener("click", handleClick, {once: true});
   });
   setBoardHover();
   winningMessage.classList.remove("show");
@@ -59,7 +59,7 @@ function endGame(draw) {
   if (draw) {
     winningMessageText.innerText = "Draw!";
   } else {
-    winningMessageText.innerText = `${oTurn ? "O's" : "X's"} Wins!`;
+    winningMessageText.innerText = `${oTurn ? "O's" : "X's"} Win!`;
   }
   winningMessage.classList.add("show");
 }

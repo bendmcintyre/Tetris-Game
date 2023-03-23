@@ -1,0 +1,130 @@
+@import 'variables';
+@import 'mixins';
+@import 'functions';
+@import 'flow-control';
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    font-family: $font-family;
+}
+
+h1 {
+    color: $main-color;
+    font-family: $font-family;
+    text-align: center;
+    font-size: 3em;
+}
+
+body {
+    margin: 0;
+    background-color: $background-color;
+}
+
+.board {
+    @include flexCenter;
+    height: 70vh;
+    width: 100vw;
+    grid-template-columns: repeat(3, auto);
+    display: grid;
+}
+
+.cell {
+    border: 3px solid $main-color;
+    @include flexCenter;
+    position: relative;
+    cursor: pointer;
+    width: $cell-size;
+    height: $cell-size;
+}
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
+}
+
+.cell:last-child,
+.cell:nth-child(8),
+.cell:nth-child(7) {
+    border-bottom: none;
+}
+
+.cell.x,
+.cell.circle {
+    cursor: not-allowed;
+}
+
+.cell.x::before,
+.cell.x::after,
+.cell.circle::before {
+    background-color: $mark-color;
+}
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle) {
+    @include hoverStyle('before', rotate(45deg));
+    @include hoverStyle('after', rotate(-45deg));
+}
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle) {
+    @include markStyle($mark-width, $mark-size);
+}
+
+.cell.circle::before,
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle) {
+    @include hoverStyle('before', null);
+    @include hoverStyle('after', null);
+}
+
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle) {
+    @include markStyle($mark-size, $mark-size);
+    border-radius: setBorderRadius(true);
+}
+
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle) {
+    @include markStyle($circle-inner-size, $circle-inner-size);
+    background-color: $background-color;
+    border-radius: setBorderRadius(true);
+}
+
+.winning-message {
+    @include flexCenter;
+    display: none;
+    position: fixed;
+    background-color: rgba(0, 0, 0, .9);
+    color: $hover-color;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-size: $winning-message-font-size;
+    flex-direction: column;
+}
+
+.winning-message button {
+    font-size: $button-font-size;
+    background-color: $main-color;
+    border: 1px solid black;
+    padding: .25em .5em;
+    cursor: pointer;
+}
+
+.winning-message button:hover {
+    background-color: $background-color;
+    color: $mark-color;
+    border-color: $main-color;
+}
+
+.winning-message.show {
+    display: flex;
+}
+
+@error 'This is an example SCSS error directive.';

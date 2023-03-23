@@ -1,0 +1,11 @@
+@function setBorder($index, $position) {
+    @if $index % 3==1 {
+        @return $position;
+    }
+
+    @return none;
+}
+
+@function setBorderRadius($radius) {
+    @return if($radius, 50%, 0);
+}
