@@ -1,6 +1,0 @@
-@for $i from 1 through 3 {
-    .cell:nth-child(3n + #{$i}) {
-        border-#{setBorder($i, left)}: none;
-        border-#{setBorder($i, right)}: none;
-    }
-}
